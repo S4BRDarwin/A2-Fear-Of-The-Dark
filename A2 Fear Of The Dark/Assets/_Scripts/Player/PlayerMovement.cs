@@ -1,39 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementTutorial : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
 
-    [SerializeField] private float groundDrag;
+    private float groundDrag;
 
     [Header("Ground Check")]
     [SerializeField] private float playerHeight;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask whatIsGround;
     private bool grounded;
-    
 
     [SerializeField] private Transform orientation;
 
-    private float horizontalInput;
-    private float verticalInput;
+    float horizontalInput;
+    float verticalInput;
 
-    Vector3 moveDirection;
+    private Vector3 moveDirection;
 
-    Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
     }
 
-    void Update()
+    private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
         MyInput();
+        SpeedControl();
 
         // handle drag
         if (grounded)
@@ -42,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearDamping = 0;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         MovePlayer();
     }
@@ -58,7 +60,21 @@ public class PlayerMovement : MonoBehaviour
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
     }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
+    }
+
 
 }
