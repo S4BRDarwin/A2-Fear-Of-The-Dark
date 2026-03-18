@@ -11,7 +11,6 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private float playerHeight;
-    [SerializeField] private LayerMask whatIsGround;
     private bool grounded;
 
     [SerializeField] private Transform orientation;
@@ -32,7 +31,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f);
 
         MyInput();
         SpeedControl();
