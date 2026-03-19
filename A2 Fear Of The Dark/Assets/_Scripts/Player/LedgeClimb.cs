@@ -23,6 +23,7 @@ public class LedgeClimb : MonoBehaviour
     [SerializeField] private Color checkWallRayColour = Color.red;
     [SerializeField] private Color checkHeightRayColour = Color.blue;
 
+    private bool facingWall = false;
     private bool ableToClimb = false;
     private bool isClimbing = false;
     private Vector3 faceNormal = Vector3.zero;
@@ -60,7 +61,7 @@ public class LedgeClimb : MonoBehaviour
         Vector3 checkDirection = new Vector3(playerObj.forward.x, 0f, playerObj.forward.z).normalized;
         Vector3 origin = ledgeCheck.position;
 
-        Debug.DrawLine(origin, origin + checkDirection * wallCheckDistance, Color.yellow, 0.1f);
+        Debug.DrawLine(origin, origin + checkDirection * wallCheckDistance, checkWallRayColour, 0.1f);
 
         if (Physics.Raycast(origin, checkDirection, out RaycastHit wallHit, wallCheckDistance, climbableWallLayer))
         {
@@ -85,8 +86,6 @@ public class LedgeClimb : MonoBehaviour
     {
         thirdPersonCam.LockRotation(true);
         StartCoroutine(FaceWall());
-        
-        StartCoroutine(ClimbCoroutine());
     }
 
     private IEnumerator ClimbCoroutine()
@@ -101,7 +100,7 @@ public class LedgeClimb : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitForSeconds(0.1f);
 
         climbStartPos = transform.position;
         climbEndPosY = new Vector3(transform.position.x, topHitPoint.y + verticalOffset + 0.05f, transform.position.z);
@@ -151,5 +150,6 @@ public class LedgeClimb : MonoBehaviour
         }
 
         transform.rotation = targetRotation;
+        StartCoroutine(ClimbCoroutine());
     } 
 }
