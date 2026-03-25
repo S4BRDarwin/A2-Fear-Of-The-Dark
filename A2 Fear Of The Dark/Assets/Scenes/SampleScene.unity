@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 100315685}
   - component: {fileID: 100315684}
   - component: {fileID: 100315683}
+  - component: {fileID: 100315687}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -434,6 +435,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &100315687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100315681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ba3f56523c32b4abe72d7948b632b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
 --- !u!1 &148473612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,6 +1797,7 @@ GameObject:
   - component: {fileID: 531150324}
   - component: {fileID: 531150323}
   - component: {fileID: 531150322}
+  - component: {fileID: 531150326}
   m_Layer: 0
   m_Name: Enemy 2
   m_TagString: Enemy
@@ -1879,6 +1894,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &531150326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531150320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ba3f56523c32b4abe72d7948b632b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
 --- !u!1001 &588683381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2848,6 +2876,9 @@ MonoBehaviour:
   pipeData: {fileID: 11400000, guid: 9da47832c6ba3dc4fa74744247a40d44, type: 2}
   axeData: {fileID: 11400000, guid: 03f4c6a1a53fd8a4c90595c5f111e827, type: 2}
   weaponChangeSo: {fileID: 11400000, guid: 6694b99a3165dea4ca98f8ab31cbe194, type: 2}
+  damage: 0
+  fireRate: 0
+  range: 0
 --- !u!114 &986155917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2861,7 +2892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponManager: {fileID: 986155916}
-  weaponHitbox: {fileID: 1568717820}
+  enemyInRangeTracker: {fileID: 1568717822}
+  enemiesToDamage: []
 --- !u!1 &1010021069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2934460501826787965, guid: 48f1e2762de0e2b47ab9474e2d968ac1, type: 3}
@@ -3037,7 +3069,7 @@ Transform:
   m_GameObject: {fileID: 1568717820}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.329, z: 0.94000065}
+  m_LocalPosition: {x: 0, y: 0.114, z: 0.94000065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3055,7 +3087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3230f0222434d8343aacd954af000107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackableEnemies: []
+  attackableEnemies:
+  - {fileID: 0}
 --- !u!65 &1568717823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3075,7 +3108,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 0.5, z: 2}
+  m_Size: {x: 3, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1700785099
 GameObject:
@@ -3746,6 +3779,7 @@ GameObject:
   - component: {fileID: 1853443798}
   - component: {fileID: 1853443797}
   - component: {fileID: 1853443796}
+  - component: {fileID: 1853443800}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Enemy
@@ -3842,6 +3876,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853443800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853443794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ba3f56523c32b4abe72d7948b632b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
 --- !u!1 &1882531278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6076567503070477648, guid: 48f1e2762de0e2b47ab9474e2d968ac1, type: 3}

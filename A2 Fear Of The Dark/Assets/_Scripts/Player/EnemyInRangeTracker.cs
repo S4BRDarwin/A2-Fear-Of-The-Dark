@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class EnemyInRangeTracker : MonoBehaviour
 {
-    [SerializeField] public List<GameObject> attackableEnemies = new List<GameObject>();
+    public List<GameObject> attackableEnemies = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,5 +20,4 @@ public class EnemyInRangeTracker : MonoBehaviour
             attackableEnemies.Remove(other.gameObject);
         }
     }
-
 }

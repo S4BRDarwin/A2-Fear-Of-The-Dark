@@ -8,9 +8,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private WeaponChangeSo weaponChangeSo;
     
     [Header("Current Weapon Stats")]
-    [SerializeField] public int damage { get; private set; }
-    [SerializeField] public float fireRate { get; private set; }
-    [SerializeField] public float range { get; private set; }
+    [SerializeField] public int damage;
+    [SerializeField] public float fireRate;
+    [SerializeField] public float range;
 
     void OnEnable()
     {

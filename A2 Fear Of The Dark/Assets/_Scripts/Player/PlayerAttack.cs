@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private WeaponManager weaponManager;
-    [SerializeField] private GameObject weaponHitbox;
+    [SerializeField] private EnemyInRangeTracker enemyInRangeTracker;
+    [SerializeField] private List<GameObject> enemiesToDamage = new List<GameObject>();
 
     private bool attacking = false;
 
@@ -15,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log("Starting Attack Coroutine");
                 attacking = true;
                 StartCoroutine(AttackCoroutine());
             }
@@ -25,22 +28,27 @@ public class PlayerAttack : MonoBehaviour
     {
         while (Input.GetMouseButton(0))
         {
-            weaponHitbox.GetComponent<Collider>().enabled = true;
+            Debug.Log("Attack Coroutine Started");
+            // weaponHitbox.GetComponent<Collider>().enabled = true;
             Attack();
-            weaponHitbox.GetComponent<Collider>().enabled = false;
-            yield return new WaitForSeconds(weaponManager.fireRate);
+            // weaponHitbox.GetComponent<Collider>().enabled = false;
+            yield return new WaitForSeconds(1f / weaponManager.fireRate);
         }
         attacking = false;
     }
 
     private void Attack()
     {
-        foreach (GameObject enemy in weaponHitbox.GetComponent<EnemyInRangeTracker>().attackableEnemies)
+        enemiesToDamage = enemyInRangeTracker.attackableEnemies;
+        foreach (GameObject enemy in enemiesToDamage)
         {
-            if (enemy.CompareTag("Enemy"))
+            if (enemy != null)
             {
+                Debug.Log($"Attacking {enemy}");
                 enemy.GetComponent<EnemyHealth>().TakeDamage(weaponManager.damage);
             }
+            else
+                Debug.Log($"Enemy is {enemy}");
         }
     }
 }
