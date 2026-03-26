@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private EnemyTrackerSO enemyTrackerSO;
+
     [Header("Settings")]
     [SerializeField] private int maxHealth = 5;
     private int currentHealth;
@@ -9,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        enemyTrackerSO.RaiseEventEnemySpawned(gameObject);
     }
 
     public void TakeDamage(int damage)
@@ -24,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        enemyTrackerSO.RaiseEventEnemyKilled(gameObject);
         Destroy(gameObject);
     }
 }

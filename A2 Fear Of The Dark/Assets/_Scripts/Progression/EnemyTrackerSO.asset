@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1616e40e5c234254183c9dc455ece388, type: 3}
-  m_Name: Pipe
+  m_Script: {fileID: 11500000, guid: 7418fb204d5fc064ea30c259d7a54b02, type: 3}
+  m_Name: EnemyTrackerSO
   m_EditorClassIdentifier: 
-  damage: 1
-  fireRate: 1
-  range: 1
-  durability: 50
-  weaponType: 0

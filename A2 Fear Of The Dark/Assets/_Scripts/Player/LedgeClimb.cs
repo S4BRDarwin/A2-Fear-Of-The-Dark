@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 
 public class LedgeClimb : MonoBehaviour
 {

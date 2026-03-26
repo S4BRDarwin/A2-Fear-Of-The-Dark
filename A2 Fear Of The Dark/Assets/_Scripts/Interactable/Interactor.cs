@@ -9,8 +9,11 @@ interface IInteractable
 
 public class Interactor : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI promptText;
     [SerializeField] private Transform interactOriginPoint;
+    [SerializeField] private LayerMask interactableLayer;
+
     [SerializeField] private float interactDistance = 2f;
 
     void Update()
@@ -20,7 +23,7 @@ public class Interactor : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * interactDistance);
         RaycastHit hitInfo;
         
-        if (Physics.Raycast(ray, out hitInfo, interactDistance))
+        if (Physics.Raycast(ray, out hitInfo, interactDistance, interactableLayer))
         {
             if (hitInfo.collider.TryGetComponent(out IInteractable interactableObj))
             {
