@@ -103,6 +103,7 @@ public class LedgeClimb : MonoBehaviour
         climbStartPos = transform.position;
         climbEndPosY = new Vector3(transform.position.x, topHitPoint.y + verticalOffset + 0.05f, transform.position.z);
         Vector3 climbTarget = climbEndPosY;
+        elapsedTime = 0f;
 
         while (elapsedTime < climbDuration)
         {

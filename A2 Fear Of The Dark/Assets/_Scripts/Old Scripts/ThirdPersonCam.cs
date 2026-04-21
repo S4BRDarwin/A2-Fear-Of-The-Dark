@@ -35,7 +35,7 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 viewDir = player.position - new Vector3(cam.position.x, player.position.y, cam.position.z);
         orientation.forward = viewDir.normalized;
 
-        // roate player object
+        // rotate player object
         if (grounded && !climbing)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
