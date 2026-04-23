@@ -4,7 +4,7 @@ using System.Collections;
 public class LedgeClimb : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private ThirdPersonCam thirdPersonCam;
+    // [SerializeField] private ThirdPersonCam thirdPersonCam;
     [SerializeField] private Transform playerObj;
     [SerializeField] private Transform ledgeCheck;
     [SerializeField] private LayerMask climbableWallLayer;
@@ -82,7 +82,7 @@ public class LedgeClimb : MonoBehaviour
 
     private void Climb()
     {
-        thirdPersonCam.LockRotation(true);
+        // thirdPersonCam.LockRotation(true);
         StartCoroutine(FaceWall());
     }
 
@@ -125,7 +125,7 @@ public class LedgeClimb : MonoBehaviour
         }
 
         isClimbing = false;
-        thirdPersonCam.LockRotation(false);
+        // thirdPersonCam.LockRotation(false);
         ableToClimb = false;
     }
 

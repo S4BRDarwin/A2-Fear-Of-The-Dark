@@ -7,4 +7,6 @@ public class Torch : MonoBehaviour
     [SerializeField] float dps;
     [SerializeField] float brightness;
 
+    
+
 }
