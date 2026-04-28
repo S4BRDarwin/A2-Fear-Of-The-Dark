@@ -49,7 +49,7 @@ public class EnemyPlayerDetection : MonoBehaviour
 
         Debug.DrawRay(transform.position, directionToPlayer * sightRange, Color.red);
         
-        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hitInfo, sightRange))
+        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hitInfo, sightRange, playerLayer))
         {
             if (hitInfo.collider.gameObject.CompareTag("Player"))
             {
