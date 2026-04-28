@@ -52,7 +52,8 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     private void MovePlayer()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        Vector3 rawDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = new Vector3(rawDirection.x, 0f, rawDirection.z).normalized;
 
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);

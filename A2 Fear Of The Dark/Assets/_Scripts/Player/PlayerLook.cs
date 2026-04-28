@@ -11,8 +11,8 @@ public class PlayerLook : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        orientation.forward = cam.forward;
+        orientation.forward = new Vector3(cam.forward.x, 0f, cam.forward.z).normalized;
     }
 }

@@ -15,18 +15,18 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  m_FogColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.054
+  m_FogDensity: 0.098
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0
-  m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 94d90487a11f0c24589d2d9fa2dfbcde, type: 2}
+  m_AmbientIntensity: 0.61
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 97637a2a763b7f24b8da4e139e4144ca, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.025
+  m_ReflectionIntensity: 0.039
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -66,7 +66,7 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_ReflectionCompression: 2
+    m_ReflectionCompression: 0
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
@@ -326,6 +326,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 179.683, z: 0}
+--- !u!1 &102919764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102919765}
+  - component: {fileID: 102919766}
+  m_Layer: 3
+  m_Name: Torch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &102919765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102919764}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 920586679}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &102919766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102919764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d44bbf8090ae446a756483772ce8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  coneAngle: 30
+  rayCount: 6
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  maxHoldTime: 3
+  cooldownMultiplier: 0.5
+  currentCooldown: 0
+  damagePerTick: 1
+  damageTickDelay: 0.1
+  showDebugRays: 1
+  currentlyDetectedEnemies: []
+  isActive: 0
+  holdDuration: 0
+  ableToDamage: 1
 --- !u!1 &148473612
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0ed47427bc21b43b315ef5a24da3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponChangeSo: {fileID: 11400000, guid: 6694b99a3165dea4ca98f8ab31cbe194, type: 2}
 --- !u!65 &163497322
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -805,7 +864,7 @@ GameObject:
   - component: {fileID: 282789241}
   - component: {fileID: 282789235}
   - component: {fileID: 282789240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -825,7 +884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTrackerSO: {fileID: 11400000, guid: 8a022f849a5371f4c9610ce23c2f43dd, type: 2}
-  maxHealth: 5
+  maxHealth: 20
+  currentHealth: 0
+  takingDamage: 0
 --- !u!136 &282789236
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2127,7 +2188,7 @@ GameObject:
   - component: {fileID: 602976150}
   - component: {fileID: 602976149}
   - component: {fileID: 602976148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2165,7 +2226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTrackerSO: {fileID: 11400000, guid: 8a022f849a5371f4c9610ce23c2f43dd, type: 2}
-  maxHealth: 5
+  maxHealth: 20
+  currentHealth: 0
+  takingDamage: 0
 --- !u!195 &602976150
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2325,8 +2388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1e6b762d0744741bb736966ef88df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewChangeSO: {fileID: 11400000, guid: 9471eb7855f84a847b05b4ac5dd7b22c, type: 2}
-  viewState: 0
 --- !u!65 &605571021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2360,12 +2421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7657387c6cfa6e4287813e492a1c4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewChangeSO: {fileID: 11400000, guid: 9471eb7855f84a847b05b4ac5dd7b22c, type: 2}
-  cameraOffset: {fileID: 773666476}
-  orbitalFollow: {fileID: 773666472}
-  topRadius: 2
-  centerRadius: 3
-  bottomRadius: 2
 --- !u!1 &621223626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,7 +3214,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 102919765}
   m_Father: {fileID: 986155911}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &935976045
@@ -3547,7 +3603,7 @@ GameObject:
   - component: {fileID: 1258642184}
   - component: {fileID: 1258642183}
   - component: {fileID: 1258642182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3585,7 +3641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTrackerSO: {fileID: 11400000, guid: 8a022f849a5371f4c9610ce23c2f43dd, type: 2}
-  maxHealth: 5
+  maxHealth: 20
+  currentHealth: 0
+  takingDamage: 0
 --- !u!195 &1258642184
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3820,8 +3878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3230f0222434d8343aacd954af000107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackableEnemies:
-  - {fileID: 0}
 --- !u!1 &1336559948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3854,7 +3910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db23c4cc1e53b9f45b66571a4a016ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponChangeSo: {fileID: 11400000, guid: 6694b99a3165dea4ca98f8ab31cbe194, type: 2}
 --- !u!65 &1336559950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3990,8 +4045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1e6b762d0744741bb736966ef88df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewChangeSO: {fileID: 11400000, guid: 9471eb7855f84a847b05b4ac5dd7b22c, type: 2}
-  viewState: 1
 --- !u!65 &1700785102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4025,9 +4078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cedf91d77b5d2d74cb833d7bc412ca83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewChangeSO: {fileID: 11400000, guid: 9471eb7855f84a847b05b4ac5dd7b22c, type: 2}
-  cameraOffset: {fileID: 773666476}
-  orbitalFollow: {fileID: 773666472}
 --- !u!1 &1701964752 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -228142887007937245, guid: 48f1e2762de0e2b47ab9474e2d968ac1, type: 3}
@@ -4086,7 +4136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0ed47427bc21b43b315ef5a24da3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponChangeSo: {fileID: 11400000, guid: 6694b99a3165dea4ca98f8ab31cbe194, type: 2}
 --- !u!65 &1705887308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4786,7 +4835,7 @@ GameObject:
   - component: {fileID: 1877396422}
   - component: {fileID: 1877396421}
   - component: {fileID: 1877396420}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4824,7 +4873,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTrackerSO: {fileID: 11400000, guid: 8a022f849a5371f4c9610ce23c2f43dd, type: 2}
-  maxHealth: 5
+  maxHealth: 20
+  currentHealth: 0
+  takingDamage: 0
 --- !u!195 &1877396422
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5089,7 +5140,7 @@ GameObject:
   - component: {fileID: 1909047477}
   - component: {fileID: 1909047476}
   - component: {fileID: 1909047475}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5127,7 +5178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTrackerSO: {fileID: 11400000, guid: 8a022f849a5371f4c9610ce23c2f43dd, type: 2}
-  maxHealth: 5
+  maxHealth: 20
+  currentHealth: 0
+  takingDamage: 0
 --- !u!195 &1909047477
 NavMeshAgent:
   m_ObjectHideFlags: 0
