@@ -1,8 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Torch : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameObject torchLight;
+    [SerializeField] private Light torchLightSpotLight;
+
     [Header("Cone Settings")]
     [SerializeField] float range = 5f;
     [SerializeField] float coneAngle = 30f;
@@ -23,7 +28,6 @@ public class Torch : MonoBehaviour
     
     [Header("Testing")]
     [SerializeField] private List<GameObject> currentlyDetectedEnemies = new List<GameObject>();
-    [SerializeField] private bool isActive = false;
     [SerializeField] private float holdDuration = 0f;
     [SerializeField] private bool ableToDamage = true;
 
@@ -43,28 +47,28 @@ public class Torch : MonoBehaviour
             return; // Can't use while on cooldown
         }
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && ableToDamage)
         {
-            isActive = true;
+            torchLight.GetComponent<MeshRenderer>().enabled = true;
             holdDuration += Time.deltaTime;
             holdDuration = Mathf.Clamp(holdDuration, 0f, maxHoldTime);
 
-            if (holdDuration >= maxHoldTime)
+            if (holdDuration == maxHoldTime)
             {
                 showDebugRays = false;
                 ableToDamage = false;
-                return;
             }
 
             // Apply damage while held
             CastCone();
         }
-        else if (Input.GetButtonUp("Fire1") || (ableToDamage == false && currentCooldown <= 0f))
+        else if (Input.GetButtonUp("Fire1") || (!ableToDamage)) // && currentCooldown > 0f))
         {
             // Release - calculate cooldown based on hold duration
+            torchLight.GetComponent<MeshRenderer>().enabled = false;
             currentCooldown = holdDuration * cooldownMultiplier;
+            if (currentCooldown < 0.5f) currentCooldown = 0.5f;
             holdDuration = 0f;
-            isActive = false;
         }
     }
 

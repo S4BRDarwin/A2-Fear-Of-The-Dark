@@ -439,6 +439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d44bbf8090ae446a756483772ce8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torchLight: {fileID: 1717176650}
+  torchLightSpotLight: {fileID: 0}
   range: 7.5
   coneAngle: 30
   rayCount: 6
@@ -446,13 +448,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxHoldTime: 3
-  cooldownMultiplier: 0.5
+  cooldownMultiplier: 0.75
   currentCooldown: 0
   damagePerTick: 1
   damageTickDelay: 0.1
   showDebugRays: 1
   currentlyDetectedEnemies: []
-  isActive: 0
   holdDuration: 0
   ableToDamage: 1
 --- !u!1 &148473612
@@ -4705,6 +4706,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1717176650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a1c95de0ee19fb441919740a46c00e0c, type: 3}
+  m_PrefabInstance: {fileID: 2119025095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1718832514
 GameObject:
   m_ObjectHideFlags: 0
@@ -5967,7 +5973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: a1c95de0ee19fb441919740a46c00e0c, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: a1c95de0ee19fb441919740a46c00e0c, type: 3}
       propertyPath: m_CastShadows
@@ -5980,10 +5986,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: a1c95de0ee19fb441919740a46c00e0c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1fd8ebac21c3859459c7af21618c9a52, type: 2}
+      objectReference: {fileID: 2100000, guid: 1aa5e5505c25cab48a7a3fb07b3d56be, type: 2}
     - target: {fileID: 919132149155446097, guid: a1c95de0ee19fb441919740a46c00e0c, type: 3}
       propertyPath: m_Name
       value: Torch Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a1c95de0ee19fb441919740a46c00e0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6167,6 +6177,10 @@ SceneRoots:
   - {fileID: 2136609948}
   - {fileID: 5123611382105372779}
   - {fileID: 1051882226}
+  - {fileID: 1632333250}
+  - {fileID: 764685809}
+  - {fileID: 1499137822}
+  - {fileID: 17552812}
   - {fileID: 935976047}
   - {fileID: 558251479}
   - {fileID: 588683381}
@@ -6176,7 +6190,3 @@ SceneRoots:
   - {fileID: 1705887311}
   - {fileID: 163497325}
   - {fileID: 1336559953}
-  - {fileID: 1632333250}
-  - {fileID: 764685809}
-  - {fileID: 1499137822}
-  - {fileID: 17552812}
