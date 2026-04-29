@@ -1,16 +1,36 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    [Header("References")]
+    [SerializeField] private PlayerRespawnSO playerRespawnSO;
+
+    void OnEnable()
     {
-        
+        playerRespawnSO.PlayerDeath += BeginReset;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        
+        playerRespawnSO.PlayerDeath += BeginReset;
     }
+
+    public void BeginReset()
+    {
+        StartCoroutine(ResetScene());
+    }
+
+    private IEnumerator ResetScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("FirstAreaScene");
+        while (!asyncLoad.isDone)
+        {
+            Debug.Log(asyncLoad.progress);
+            yield return null;
+        }
+    }
+
 }
