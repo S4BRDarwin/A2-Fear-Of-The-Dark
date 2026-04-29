@@ -3638,6 +3638,7 @@ GameObject:
   - component: {fileID: 986155915}
   - component: {fileID: 986155918}
   - component: {fileID: 986155919}
+  - component: {fileID: 986155920}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -3768,6 +3769,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 920586679}
   cam: {fileID: 677924540}
+--- !u!114 &986155920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986155910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2fa3cbbbe6b3a45a4718c7645cb6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRespawnSo: {fileID: 11400000, guid: 77a5189b0e9d4094c90655879652b8fd, type: 2}
+  maxHealth: 10
+  currentHealth: 0
+  takingDamage: 0
 --- !u!1 &1010021069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2934460501826787965, guid: 48f1e2762de0e2b47ab9474e2d968ac1, type: 3}
