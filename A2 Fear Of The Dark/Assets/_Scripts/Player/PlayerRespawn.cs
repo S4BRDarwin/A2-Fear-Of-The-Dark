@@ -15,7 +15,7 @@ public class PlayerRespawn : MonoBehaviour
 
     void OnDisable()
     {
-        playerRespawnSO.PlayerDeath += BeginReset;
+        playerRespawnSO.PlayerDeath -= BeginReset;
     }
 
     public void BeginReset()
@@ -28,7 +28,6 @@ public class PlayerRespawn : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("FirstAreaScene");
         while (!asyncLoad.isDone)
         {
-            Debug.Log(asyncLoad.progress);
             yield return null;
         }
     }

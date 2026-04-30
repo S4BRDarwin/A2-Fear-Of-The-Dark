@@ -8,6 +8,7 @@ public class EnemyPlayerDetection : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private NavMeshAgent navAgent;
+    // [SerializeField] private EnemyAttack enemyAttack;
 
     [Header("Settings")]
     [SerializeField] private float sightRange = 10f;
@@ -15,17 +16,15 @@ public class EnemyPlayerDetection : MonoBehaviour
 
     private bool canSeePlayer;
 
-    void Awake()
-    {
-        if (player == null)
-            player = GameObject.FindWithTag("Player");
-
-        if (navAgent == null)
-            navAgent = GetComponent<NavMeshAgent>();
-    }
-
     void Update()
     {
+        // Stop chasing while attacking
+        if (this.GetComponentInChildren<EnemyAttack>().IsAttacking)
+        {
+            navAgent.isStopped = true;
+            return;
+        }
+
         canSeePlayer = IsPlayerInSight();
 
         if (canSeePlayer)

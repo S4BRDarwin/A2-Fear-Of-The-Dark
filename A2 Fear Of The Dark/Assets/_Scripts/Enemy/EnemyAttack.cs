@@ -1,12 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
     
     [SerializeField] private bool canAttackPlayer = false;
-    [SerializeField] private bool attacking = false;
+    public bool IsAttacking { get; private set; }
     [SerializeField] GameObject player;
+
+    void OnEnable()
+    {
+        // player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,9 +32,9 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        if (canAttackPlayer && !attacking)
+        if (canAttackPlayer && !IsAttacking)
         {
-            attacking = true;
+            IsAttacking = true;
             StartCoroutine(AttackCoroutine());
         }
     }
@@ -37,6 +43,6 @@ public class EnemyAttack : MonoBehaviour
     {
         player.GetComponent<PlayerHealth>().TakeDamage(1);
         yield return new WaitForSeconds(1f);
-        attacking = false;
+        IsAttacking = false;
     }
 }
