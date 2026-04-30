@@ -6,7 +6,7 @@ public class Torch : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject torchLight;
-    [SerializeField] private Light torchLightSpotLight;
+    [SerializeField] private Light torchLightSpotlight;
 
     [Header("Cone Settings")]
     [SerializeField] float range = 5f;
@@ -68,6 +68,7 @@ public class Torch : MonoBehaviour
             torchLight.GetComponent<MeshRenderer>().enabled = false;
             currentCooldown = holdDuration * cooldownMultiplier;
             if (currentCooldown < 0.5f) currentCooldown = 0.5f;
+            StartCoroutine(TorchCooldownEffect());
             holdDuration = 0f;
         }
     }
@@ -121,6 +122,20 @@ public class Torch : MonoBehaviour
                     health.StartTakeDamage((float)damagePerTick, (float)damageTickDelay);
                 }
             }
+        }
+    }
+
+    private IEnumerator TorchCooldownEffect()
+    {
+        float elapsedTime = 0f;
+        float cooldownDuration = currentCooldown;
+        float startIntensity = torchLightSpotlight.intensity;
+        torchLightSpotlight.intensity = 0f;
+        while (elapsedTime < cooldownDuration)
+        {
+            torchLightSpotlight.intensity = Mathf.Lerp(torchLightSpotlight.intensity, startIntensity, elapsedTime / cooldownDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
     }
 
